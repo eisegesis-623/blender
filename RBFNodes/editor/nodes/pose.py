@@ -98,6 +98,10 @@ class RBFPoseNode(node.RBFNode):
         row.prop(self, "edit_pose", toggle=True)
         row.separator(factor=1.0)
         row.operator("rbfnodes.recall_pose").nodeName = self.name
+        row2 = layout.row(align=True)
+        row2.prop(self, "driverData")
+        row3 = layout.row(align=True)
+        row3.prop(self, "drivenData")
 
     def draw_buttons_ext(self, context, layout):
         """Draw node buttons in the sidebar.
