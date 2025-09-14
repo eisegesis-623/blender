@@ -107,6 +107,10 @@ class RBFPoseNode(node.RBFNode):
         row2.prop(self, "driverData")
         row3 = layout.row(align=True)
         row3.prop(self, "drivenData")
+        layout.row(align=True).label(text=
+                                     "Driver Size = " + str(self.driverSize) +
+                                     ", Driven Size = " + str(self.drivenSize) +
+                                     ", Pose Index = " + str(self.poseIndex))
 
     def draw_buttons_ext(self, context, layout):
         """Draw node buttons in the sidebar.
