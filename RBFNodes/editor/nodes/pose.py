@@ -97,6 +97,8 @@ class RBFPoseNode(node.RBFNode):
         row = layout.row(align=True)
         row.prop(self, "edit_pose", toggle=True)
         row.separator(factor=1.0)
+        row.operator("rbfnodes.recall_and_edit_pose").nodeName = self.name
+        row.separator(factor=1.0)
         row.operator("rbfnodes.recall_pose").nodeName = self.name
         row2 = layout.row(align=True)
         row2.prop(self, "driverData")

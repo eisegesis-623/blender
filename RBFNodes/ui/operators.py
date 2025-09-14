@@ -128,6 +128,39 @@ class RBFNODES_OT_RecallPose(bpy.types.Operator):
         result = poses.recallPose(context, self.nodeName)
         if result:
             self.report(result[0], result[1])
+            
+        return {'FINISHED'}
+
+class RBFNODES_OT_RecallAndEditPose(bpy.types.Operator):
+    """Operator class for recalling and editing a pose.
+    """
+    bl_idname = "rbfnodes.recall_and_edit_pose"
+    bl_label = "RecallEdit"
+    bl_description = "Set the properties of the RBF to match the selected pose and edit."
+    bl_options = {'REGISTER', 'UNDO'}
+
+    nodeName : bpy.props.StringProperty()
+
+    # ------------------------------------------------------------------
+    # General operator methods.
+    # ------------------------------------------------------------------
+
+    def execute(self, context):
+        """Execute the operator.
+
+        :param context: The current context.
+        :type context: bpy.context
+        """
+        # Set "edit pose" to true
+        nodeGroup = nodeTree.getNodeTree(context)
+        node = nodeGroup.nodes[self.nodeName]
+        node.edit_pose = not node.edit_pose
+
+        if node.edit_pose:
+            result = poses.recallPose(context, self.nodeName)
+            
+            if result:
+                self.report(result[0], result[1])
 
         return {'FINISHED'}
 
