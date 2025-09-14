@@ -65,7 +65,7 @@ class RBFPoseNode(node.RBFNode):
     # Properties
     # ------------------------------------------------------------------
 
-    edit_pose : bpy.props.BoolProperty(name="Edit",
+    edit_pose : bpy.props.BoolProperty(name="Editing",
                                        description=strings.ANN_EDIT_POSE,
                                        update=toggleEditPose)
 
@@ -94,12 +94,15 @@ class RBFPoseNode(node.RBFNode):
         :param layout: The current layout.
         :type layout: bpy.types.UILayout
         """
-        row = layout.row(align=True)
-        row.prop(self, "edit_pose", toggle=True)
-        row.separator(factor=1.0)
-        row.operator("rbfnodes.recall_and_edit_pose").nodeName = self.name
-        row.separator(factor=1.0)
-        row.operator("rbfnodes.recall_pose").nodeName = self.name
+        if not self.edit_pose:
+            row0 = layout.row(align=True)
+            row0.operator("rbfnodes.recall_and_edit_pose").nodeName = self.name
+        row1 = layout.row(align=True)
+        row1.prop(self, "edit_pose",
+                  text=("Stop Editing" if self.edit_pose else "Start Edit (No Recall)"),
+                  toggle=True)
+        row1.separator(factor=1.0)
+        row1.operator("rbfnodes.recall_pose").nodeName = self.name
         row2 = layout.row(align=True)
         row2.prop(self, "driverData")
         row3 = layout.row(align=True)

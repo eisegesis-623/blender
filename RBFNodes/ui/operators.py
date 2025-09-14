@@ -135,7 +135,7 @@ class RBFNODES_OT_RecallAndEditPose(bpy.types.Operator):
     """Operator class for recalling and editing a pose.
     """
     bl_idname = "rbfnodes.recall_and_edit_pose"
-    bl_label = "RecallEdit"
+    bl_label = "Recall and Begin Editing"
     bl_description = "Set the properties of the RBF to match the selected pose and edit."
     bl_options = {'REGISTER', 'UNDO'}
 
