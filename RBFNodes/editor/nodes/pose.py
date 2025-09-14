@@ -70,8 +70,8 @@ class RBFPoseNode(node.RBFNode):
                                        update=toggleEditPose)
 
     poseIndex : bpy.props.IntProperty()
-    driverData : bpy.props.StringProperty()
-    drivenData : bpy.props.StringProperty()
+    driverData : bpy.props.StringProperty(name="Driver Data")
+    drivenData : bpy.props.StringProperty(name="Driven Data")
     driverSize : bpy.props.IntProperty()
     drivenSize : bpy.props.IntProperty()
 
